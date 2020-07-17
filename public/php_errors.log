@@ -117,3 +117,4 @@
 [17-Jul-2020 00:42:14 UTC] 2020-05-01
 [17-Jul-2020 00:42:14 UTC] 2020-06-01
 [17-Jul-2020 06:49:43 UTC] PHP Fatal error:  Maximum execution time of 60 seconds exceeded in E:\Trabalho\codificar_desafio\vendor\guzzlehttp\guzzle\src\Handler\CurlHandler.php on line 43
+[17-Jul-2020 08:01:14 UTC] PHP Fatal error:  Maximum execution time of 60 seconds exceeded in E:\Trabalho\codificar_desafio\vendor\guzzlehttp\guzzle\src\Handler\CurlHandler.php on line 43
