@@ -2,7 +2,7 @@
 
 ## Sobre
 
-Sistema criado para Processo de Seleção, utilizado PHP-Laravel.
+Sistema criado para Processo de Seleção, utilizando PHP-Laravel.
 
 ## Utilizando
 
