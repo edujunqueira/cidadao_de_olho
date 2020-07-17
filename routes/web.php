@@ -25,10 +25,12 @@ Route::get('/deputados', 'MainController@deputados');
 
 Route::get('/deputados/{id}', 'DeputadoController@view');
 
-Route::get('/despesas', 'DespesaController@despesas');
+Route::get('/despesas', 'DespesaController@viewDespesas');
 
 Route::get('/importar/deputados', 'DeputadoController@importDeputados');
 
 Route::get('/importar/despesas/{id}', 'DespesaController@importDespesaId');
 
 Route::get('/importar/despesas', 'DespesaController@importDespesas');
+
+Route::get('/deletar', 'MainController@deleteData');

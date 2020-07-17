@@ -72,3 +72,14 @@ footer p {
     width: 50%;
     float: left
 }
+
+.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
+
+.left {
+	text-align: left;
+}

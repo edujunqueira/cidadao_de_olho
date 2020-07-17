@@ -1,1 +1,119 @@
 [16-Jul-2020 05:39:43 UTC] PHP Fatal error:  Maximum execution time of 60 seconds exceeded in E:\Trabalho\codificar_desafio\vendor\guzzlehttp\guzzle\src\Handler\CurlHandler.php on line 43
+[16-Jul-2020 23:13:56 UTC] 200
+[16-Jul-2020 23:15:40 UTC] {"args":{"foo1":"bar1","foo2":"bar2"},"headers":{"x-forwarded-proto":"https","x-forwarded-port":"443","host":"postman-echo.com","x-amzn-trace-id":"Root=1-5f10df9c-2d626c9c5b9e39b0189822e8","user-agent":"GuzzleHttp/7"},"url":"https://postman-echo.com/get?foo1=bar1&foo2=bar2"}
+[17-Jul-2020 00:36:05 UTC] {
+    "connection": {},
+    "grammar": {},
+    "processor": {},
+    "bindings": {
+        "select": [],
+        "from": [],
+        "join": [],
+        "where": [
+            "1832"
+        ],
+        "groupBy": [],
+        "having": [],
+        "order": [],
+        "union": [],
+        "unionOrder": []
+    },
+    "aggregate": null,
+    "columns": [
+        "data",
+        "sum(valor) as valor"
+    ],
+    "distinct": false,
+    "from": "despesas",
+    "joins": null,
+    "wheres": [
+        {
+            "type": "Basic",
+            "column": "deputado_id",
+            "operator": "=",
+            "value": "1832",
+            "boolean": "and"
+        }
+    ],
+    "groups": [
+        "data"
+    ],
+    "havings": null,
+    "orders": null,
+    "limit": null,
+    "offset": null,
+    "unions": null,
+    "unionLimit": null,
+    "unionOffset": null,
+    "unionOrders": null,
+    "lock": null,
+    "operators": [
+        "=",
+        "<",
+        ">",
+        "<=",
+        ">=",
+        "<>",
+        "!=",
+        "<=>",
+        "like",
+        "like binary",
+        "not like",
+        "ilike",
+        "&",
+        "|",
+        "^",
+        "<<",
+        ">>",
+        "rlike",
+        "not rlike",
+        "regexp",
+        "not regexp",
+        "~",
+        "~*",
+        "!~",
+        "!~*",
+        "similar to",
+        "not similar to",
+        "not ilike",
+        "~~*",
+        "!~~*"
+    ],
+    "useWritePdo": false
+}
+[17-Jul-2020 00:40:23 UTC] 29024.53
+[17-Jul-2020 00:41:51 UTC] 2019-02-01
+[17-Jul-2020 00:41:51 UTC] 2019-03-01
+[17-Jul-2020 00:41:51 UTC] 2019-04-01
+[17-Jul-2020 00:41:51 UTC] 2019-05-01
+[17-Jul-2020 00:41:51 UTC] 2019-06-01
+[17-Jul-2020 00:41:51 UTC] 2019-07-01
+[17-Jul-2020 00:41:51 UTC] 2019-08-01
+[17-Jul-2020 00:41:51 UTC] 2019-09-01
+[17-Jul-2020 00:41:51 UTC] 2019-10-01
+[17-Jul-2020 00:41:51 UTC] 2019-11-01
+[17-Jul-2020 00:41:51 UTC] 2019-12-01
+[17-Jul-2020 00:41:51 UTC] 2020-01-01
+[17-Jul-2020 00:41:51 UTC] 2020-02-01
+[17-Jul-2020 00:41:51 UTC] 2020-03-01
+[17-Jul-2020 00:41:51 UTC] 2020-04-01
+[17-Jul-2020 00:41:51 UTC] 2020-05-01
+[17-Jul-2020 00:41:51 UTC] 2020-06-01
+[17-Jul-2020 00:42:14 UTC] 2019-02-01
+[17-Jul-2020 00:42:14 UTC] 2019-03-01
+[17-Jul-2020 00:42:14 UTC] 2019-04-01
+[17-Jul-2020 00:42:14 UTC] 2019-05-01
+[17-Jul-2020 00:42:14 UTC] 2019-06-01
+[17-Jul-2020 00:42:14 UTC] 2019-07-01
+[17-Jul-2020 00:42:14 UTC] 2019-08-01
+[17-Jul-2020 00:42:14 UTC] 2019-09-01
+[17-Jul-2020 00:42:14 UTC] 2019-10-01
+[17-Jul-2020 00:42:14 UTC] 2019-11-01
+[17-Jul-2020 00:42:14 UTC] 2019-12-01
+[17-Jul-2020 00:42:14 UTC] 2020-01-01
+[17-Jul-2020 00:42:14 UTC] 2020-02-01
+[17-Jul-2020 00:42:14 UTC] 2020-03-01
+[17-Jul-2020 00:42:14 UTC] 2020-04-01
+[17-Jul-2020 00:42:14 UTC] 2020-05-01
+[17-Jul-2020 00:42:14 UTC] 2020-06-01
+[17-Jul-2020 06:49:43 UTC] PHP Fatal error:  Maximum execution time of 60 seconds exceeded in E:\Trabalho\codificar_desafio\vendor\guzzlehttp\guzzle\src\Handler\CurlHandler.php on line 43

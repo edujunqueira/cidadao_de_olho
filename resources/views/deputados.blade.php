@@ -17,7 +17,7 @@
             <p>
                 @if ($deputados_bool)
                     <a href="/importar/despesas" class="btn btn-primary my-2">Importar gastos</a>
-                    <a href="/importar/deputados" class="btn btn-secondary my-2">Re-importar</a>
+                    <a href="/deletar" class="btn btn-secondary my-2">Re-importar</a>
                 @else
                     <a href="/importar/deputados" class="btn btn-primary my-2">Importar</a>
                 @endif
