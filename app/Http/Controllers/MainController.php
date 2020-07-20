@@ -23,8 +23,7 @@ class MainController extends Controller
         else
             $deputadosImportados = false;
 
-        $deputados = Deputado::all();
-
+        $deputados = DB::table('deputados')->select('nome', 'partido', 'id', 'importado')->orderBy('nome')->get();
         return view('deputados', [
             'deputados_bool' => $deputadosImportados,
             'deputados' => $deputados

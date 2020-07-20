@@ -17,8 +17,10 @@ class CreateDespesasTable extends Migration
             $table->id();
             $table->integer('deputado_id')->unsigned();
             $table->double('valor', 8, 2);
+            $table->double('valorReembolsado', 8, 2);
             $table->date('data');
             $table->string('descricao');
+            $table->string('emitente');
 
             $table->foreign('deputado_id')
                   ->references('id')

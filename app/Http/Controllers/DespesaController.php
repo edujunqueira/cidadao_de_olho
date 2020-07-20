@@ -25,13 +25,17 @@ class DespesaController extends Controller
                 $responseDespesa = Http::get('https://dadosabertos.almg.gov.br/ws/prestacao_contas/verbas_indenizatorias/legislatura_atual/deputados/' . $id . '/' . $ano . '/' . $mes . '?formato=json')->json()["list"];
                 foreach ($responseDespesa as $desp) {
                     if($desp["idDeputado"]){
-                        $despesa = new Despesa();
-                        $despesa->deputado_id = intval($desp["idDeputado"]);
-                        $despesa->valor = $desp["valor"];
-                        $despesa->data = $desp["dataReferencia"]["$"];
-                        $despesa->descricao = $desp["descTipoDespesa"];
-                        $despesa->deputado()->associate($deputado);
-                        $despesa->save();
+                        foreach ($desp["listaDetalheVerba"] as $subDesp) {
+                            $despesa = new Despesa();
+                            $despesa->deputado_id = intval($subDesp["idDeputado"]);
+                            $despesa->valor = $subDesp["valorDespesa"];
+                            $despesa->valorReembolsado = $subDesp["valorReembolsado"];
+                            $despesa->data = $subDesp["dataEmissao"]["$"];
+                            $despesa->descricao = $subDesp["descTipoDespesa"];
+                            $despesa->emitente = $subDesp["nomeEmitente"];
+                            $despesa->deputado()->associate($deputado);
+                            $despesa->save();
+                        }
                     }
                 }
             }
@@ -39,6 +43,12 @@ class DespesaController extends Controller
             $deputado->save();
         }
         return redirect('/deputados');
+    }
+
+    public function importDespesaRetDeputado($id)
+    {
+        $this->importDespesaId($id);
+        return redirect('/deputados/'.$id);
     }
 
     public function importDespesas()
@@ -52,19 +62,28 @@ class DespesaController extends Controller
         return redirect('/deputados');
     }
 
+    public function view($id)
+    {
+        $despesa = Despesa::find($id);
+        return view('/despesa', [
+            'despesa' => $despesa,
+            'deputado' => $despesa->deputado
+        ]);
+    }
+
     public function viewDespesas()
     {
+        //$maioresMeses = DB::table('despesas')->join('deputados', 'despesas.deputado_id', '=', 'deputados.id')->select('deputados.id as id', 'deputados.nome as nome', 'despesas.data as data', DB::raw('SUM(despesas.valor) as valor'))->groupBy('deputados.id', 'deputados.nome', 'despesas.data')->offset(0)->limit(10)->orderBy('valor', 'DESC')->get();
 
-        $maioresMeses = DB::table('despesas')->join('deputados', 'despesas.deputado_id', '=', 'deputados.id')->select('deputados.id as id', 'deputados.nome as nome', 'despesas.data as data', DB::raw('SUM(despesas.valor) as valor'))->groupBy('deputados.id', 'deputados.nome', 'despesas.data')->offset(0)->limit(10)->orderBy('valor', 'DESC')->get();
-        $newDB = DB::table('despesas')->join('deputados', 'despesas.deputado_id', '=', 'deputados.id')->select('deputados.id as id', 'deputados.nome as nome', 'despesas.data as data', DB::raw('SUM(despesas.valor) as valor'))->groupBy('deputados.id', 'deputados.nome', 'despesas.data')->orderBy('valor', 'DESC')->toSql();
+        $maioresMeses = DB::table('despesas')->join('deputados', 'despesas.deputado_id', '=', 'deputados.id')->select('deputados.id as id', 'deputados.nome as nome', DB::raw("DATE_FORMAT(despesas.data, '01-%m-%Y') as data"), DB::raw('SUM(despesas.valor) as valor'))->groupBy('deputados.id', 'deputados.nome', DB::raw("DATE_FORMAT(despesas.data, '01-%m-%Y')"))->offset(0)->limit(10)->orderBy('valor', 'DESC')->get();
+
+        $newDB = DB::table('despesas')->join('deputados', 'despesas.deputado_id', '=', 'deputados.id')->select('deputados.id as id', 'deputados.nome as nome', DB::raw("DATE_FORMAT(despesas.data, '01-%m-%Y') as data"), DB::raw('SUM(despesas.valor) as valor'))->groupBy('deputados.id', 'deputados.nome', DB::raw("DATE_FORMAT(despesas.data, '01-%m-%Y')"))->orderBy('valor', 'DESC')->toSql();
         $gastadores = DB::table(DB::raw("(${newDB}) as tab"))->select('id', 'nome', DB::raw('AVG(valor) as valor'))->groupBy('id', 'nome')->offset(0)->limit(10)->orderBy('valor', 'DESC')->get();
+
         $maioresDespesas = DB::table('despesas')->select('descricao as nome', DB::raw('SUM(valor) as valor'))->groupBy('nome')->orderBy('valor', 'DESC')->get();
 
         $atividadeParlamentar = DB::table('despesas')->join('deputados', 'despesas.deputado_id', '=', 'deputados.id')->select('deputados.id as id', 'deputados.nome as nome', 'despesas.data as data', 'despesas.descricao as descricao', DB::raw('SUM(despesas.valor) as valor'))
                 ->where('descricao', '=', "Divulgação da atividade parlamentar")->groupBy('descricao', 'id', 'data')->orderBy('valor', 'DESC')->offset(0)->limit(10)->get();
-
-        $locacaoVeiculos = DB::table('despesas')->join('deputados', 'despesas.deputado_id', '=', 'deputados.id')->select('deputados.id as id', 'deputados.nome as nome', 'despesas.data as data', 'despesas.descricao as descricao', DB::raw('SUM(despesas.valor) as valor'))
-                ->where('descricao', '=', 'Locação e fretamento de veículos')->groupBy('descricao', 'id', 'data')->orderBy('valor', 'DESC')->offset(0)->limit(10)->get();
 
         $locacaoVeiculos = DB::table('despesas')->join('deputados', 'despesas.deputado_id', '=', 'deputados.id')->select('deputados.id as id', 'deputados.nome as nome', 'despesas.data as data', 'despesas.descricao as descricao', DB::raw('SUM(despesas.valor) as valor'))
                 ->where('descricao', '=', 'Locação e fretamento de veículos')->groupBy('descricao', 'id', 'data')->orderBy('valor', 'DESC')->offset(0)->limit(10)->get();

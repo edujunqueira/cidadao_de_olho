@@ -22,7 +22,7 @@
                                                 @if ($tab['nome'] == 'maioresDespesas')
                                                     <p class="alignleft"><strong>Nome:</strong> {{ $entry->nome }}</p>
                                                 @else
-                                                    <p class="alignleft"><strong>Nome:</strong> <a href="/deputados/{{ $entry->id }}">{{ $entry->nome }}</a></p>
+                                                    <p class="alignleft"><strong>Nome:</strong> <a href="/deputados/{{ $entry->id }}/from=despesas">{{ $entry->nome }}</a></p>
                                                 @endif
                                                 <p class="alignright"><strong> {{ $tab['qual']}}:</strong> R$ {{ number_format ($entry->valor, 2) }}</p>
                                                 @if ($tab['data'])
